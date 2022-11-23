@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Edit details</title>
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="DBMS">
+    <meta name="author" content="Jainam Bhavsar">
+    <!-- fevicon -->
+    <link rel="icon" href="https://img.icons8.com/color/512/controller.png" type="image/gif" />
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ffef96;
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    h1 {
+        color: #622569;
+        background-color: #cab577;
+    }
+
+    hr {
+        background-color: rgb(60, 0, 255);
+    }
+
+    table {
+        color: whitesmoke;
+        background-color: #50394c;
+        padding: 1%;
+    }
+
+    a {
+        color: lightcyan;
+    }
+
+    a.heading {
+        color: blue;
+    }
+
+    a:hover {
+        background-color: none;
+        color: #c1946a;
+    }
+
+    a.heading:hover {
+        color: #3e4444;
+    }
+
+    .li {
+        color: rgb(255, 0, 187);
+    }
+
+    .li:hover {
+        color: rgb(83, 243, 214);
+    }
+</style>
+<body>
+    <center>
+        <h1>Edit the Table</h1>
+        <h3>Edit the User Detais</h3>
+        <hr/>
+        <form method="POST" action="/Update/{{UserModel.User_ID}}">
+            {% csrf_token %}
+        <table border="3">
+            <tr>
+                <td>User ID</td>
+                <td><input type="number" name="User_ID" value="{{UserModel.User_ID}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Student Name</td>
+                <td><input type="text" name="name" value="{{UserModel.name}}"></td>
+            </tr>
+            <tr>
+                <td>Student Age</td>
+                <td><input type="number" name="Age" value="{{UserModel.Age}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="Email" value="{{UserModel.Email}}"></td>
+            </tr>
+            <tr>
+                <td>PhoneNumber</td>
+                <td><input type="number" name="PhoneNumber" value="{{UserModel.PhoneNumber}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: #fefbd8;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href="{% url 'showuser' %}" class="heading">Go to View</a>
+    </form>
+    </center>
+</body>
+</html>

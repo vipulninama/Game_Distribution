@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>User View</title>
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="DBMS">
+    <meta name="author" content="Jainam Bhavsar">
+    <!-- fevicon -->
+    <link rel="icon" href="https://img.icons8.com/color/512/controller.png" type="image/gif" />
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ffef96;
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    h1 {
+        color: #622569;
+        background-color: #cab577;
+    }
+
+    hr {
+        background-color: rgb(60, 0, 255);
+    }
+
+    table {
+        color: whitesmoke;
+        background-color: #50394c;
+        padding: 1%;
+    }
+
+    a {
+        color: lightcyan;
+    }
+
+    a.heading {
+        color: blue;
+    }
+
+    a:hover {
+        background-color: none;
+        color: #c1946a;
+    }
+
+    a.heading:hover {
+        color: #3e4444;
+    }
+
+    .li {
+        color: rgb(255, 0, 187);
+    }
+
+    .li:hover {
+        color: rgb(83, 243, 214);
+    }
+</style>
+
+<body>
+    <center>
+        <h1>User's Detail</h1>
+        <hr />
+        <table border="3">
+            <form method="POST" action="sortuser">
+                {% csrf_token %}
+                <label for="Sort"></label>
+                <select id="Sort" name="Sort">
+                    <option value="User_ID">User ID</option>
+                    <option value="name">Name</option>
+                    <option value="Age">Age</option>
+                </select>
+                <input type="submit" value="Sort">
+            </form>
+            <hr />
+            <table border="3">
+                <tr>
+                    <th> User ID </th>
+                    <th> Name </th>
+                    <th> Age</th>
+                    <th> Email</th>
+                    <th> Phone Number</th>
+                </tr>
+                {% for result in data %}
+                <tr>
+                    <td> {{result.User_ID}}</td>
+                    <td> {{result.name}} </td>
+                    <td> {{result.Age}} </td>
+                    <td> {{result.Email}}</td>
+                    <td> {{result.PhoneNumber}} </td>
+                    <td><a href="EditUser">Edit📝</a></td>
+                    <td><a href="DeleteUser"
+                            onclick="return confirm('Are you sure you want to Delete Record..?')">Delete❌</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </table>
+        <a href="{% url 'homepage'%}" class="heading">Go to Homepage</a>
+        <hr />
+    </center>
+</body>
+
+</html>
